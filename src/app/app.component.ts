@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as git from 'isomorphic-git';
-import * as http from 'isomorphic-git/http/web';
-
 import FS from '@isomorphic-git/lightning-fs';
 
 @Component({
@@ -25,15 +22,16 @@ export class AppComponent implements OnInit {
     const fs = new FS('testClone');
 
     // Clone isomorphic-git repository from GitHub
-    await git.clone({
+    await (window as any).git.clone({
       fs,
-      http,
+      http: (window as any).http,
       dir: '/',
       corsProxy: 'https://cors.isomorphic-git.org',
       url: 'https://github.com/isomorphic-git/isomorphic-git',
+      ref: 'main',
       singleBranch: true,
       depth: 1,
-      onMessage: (m) => console.log(m),
+      onMessage: (m: any) => console.log(m),
     });
   }
 }

@@ -1,13 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Angular16IsomorphicGit</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Angular16IsomorphicGit</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- If you change the version > 1.23.0 you'll get the error as described here: https://github.com/isomorphic-git/isomorphic-git/issues/1782 -->
+    <script src="https://unpkg.com/isomorphic-git@1.23.0"></script>
+    <script type="module">
+      import http from "https://unpkg.com/isomorphic-git@1.23.0/http/web/index.js";
+      window.git = git;
+      window.http = http;
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>
